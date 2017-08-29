@@ -10,6 +10,15 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
+        public IEnumerable<Movie> GetMovies()
+        {
+            return new List<Movie>
+            {
+                new Movie { Name = "Shrek", Id = 1},
+                new Movie { Name = "Wall-e", Id = 2}
+            };
+        }
+        
         // GET: Movies/Random
         public ActionResult Random()
         {
@@ -31,6 +40,23 @@ namespace Vidly.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public ActionResult Index()
+        {
+            var movies = GetMovies();
+
+            return View(movies);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var movie = GetMovies().SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            return View(movie);
         }
 
     }
