@@ -11,13 +11,18 @@ namespace Vidly.Models
         public int Id { get; set; }
         [Required]
         [StringLength(255)]
+        [Display(Name = "Nome")]
         public string Name { get; set; }
         public bool IsSubscribedToNewsletter { get; set; }
+
+        [Display(Name = "Data de Nascimento")]
+        public DateTime Birthdate { get; set; }
 
         // Propriedade de navegação
         public MembershipType MembershipType { get; set; }
 
         // chave estrangeira
+        [Display(Name = "Tipo de Associação")]
         public byte MembershipTypeId { get; set; }
     }
 }
