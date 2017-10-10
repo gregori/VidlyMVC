@@ -54,8 +54,21 @@ namespace Vidly.Controllers
         [HttpPost] // só será acessada com POST
         public ActionResult Save(Customer customer) // recebemos um cliente
         {
-            // armazena o cliente em memória
-            _context.Customers.Add(customer);
+            if (customer.Id == 0)
+            {
+                // armazena o cliente em memória
+                _context.Customers.Add(customer);
+            }
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+            }
+            
             // faz a persistência
             _context.SaveChanges();
             // Voltamos para a lista de clientes
