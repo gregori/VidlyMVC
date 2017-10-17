@@ -54,6 +54,17 @@ namespace Vidly.Controllers
         [HttpPost] // só será acessada com POST
         public ActionResult Save(Customer customer) // recebemos um cliente
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+
+                return View("CustomerForm", viewModel);
+            }
+
             if (customer.Id == 0)
             {
                 // armazena o cliente em memória
