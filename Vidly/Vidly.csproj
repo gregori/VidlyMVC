@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201710031900002_AddBirthDateToCustomer.Designer.cs">
       <DependentUpon>201710031900002_AddBirthDateToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710172136240_AddValidationTags.cs" />
+    <Compile Include="Migrations\201710172136240_AddValidationTags.Designer.cs">
+      <DependentUpon>201710172136240_AddValidationTags.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -340,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710031900002_AddBirthDateToCustomer.resx">
       <DependentUpon>201710031900002_AddBirthDateToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710172136240_AddValidationTags.resx">
+      <DependentUpon>201710172136240_AddValidationTags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
