@@ -53,6 +53,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost] // só será acessada com POST
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer) // recebemos um cliente
         {
             if (!ModelState.IsValid)
