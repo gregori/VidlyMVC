@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
@@ -114,7 +115,7 @@ namespace Vidly.Controllers
             _context.Customers.Remove(customer);
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return new HttpStatusCodeResult(200);
         }
     }
 }

@@ -20,6 +20,7 @@ else
         <tr>
             <th>Cliente</th>
             <th>Associação</th>
+            <th>Remover</th>
         </tr>
         </thead>
         <tbody>
@@ -28,7 +29,9 @@ else
                 <tr>
                     <td>@Html.ActionLink(@customer.Name, "Edit", new {customer.Id})</td>
                     <td>@customer.MembershipType.Name</td>
-                    <td>@Html.ActionLink("Remover", "Delete", new {customer.Id}, new {@class = "btn-link js-delete", onclick = "return confirm('Tem certeza?');"})</td>
+                    <td>
+                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Remover</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -41,8 +44,28 @@ else
         $(document).ready(function() {
             $("#customers").on("click",".js-delete",
                 function () {
-
-                    alert("vai se ferrar");
+                    var button = $(this);
+                    bootbox.confirm("Tem certeza que quer remover este cliente?",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/customers/delete/" + button.attr("data-customer-id"),
+                                    method: "GET",
+                                    success: function() {
+                                        button.parents("tr").remove();
+                                    }
+                                });   
+                            }
+                        });
+                    /*if (confirm("Tem certeza que quer remover este cliente?")) {
+                        $.ajax({
+                            url: "/customers/delete/" + button.attr("data-customer-id"),
+                            method: "GET",
+                            success: function() {
+                                button.parents("tr").remove();
+                            }
+                        });
+                    }*/
                 });
         });
     </script>
