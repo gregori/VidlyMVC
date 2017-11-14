@@ -11,9 +11,15 @@ namespace Vidly
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*",
-                        "~/Scripts/globalize.js"));
+            var bundle = new ScriptBundle("~/bundles/jqueryval").Include(
+                "~/Scripts/jquery.validate.js",
+                "~/Scripts/jquery.validate.unobtrusive.js",
+                "~/Scripts/modelo-pt.js",
+                "~/Scripts/helper.js"
+                );
+            bundle.Orderer = new AsIsBundleOrderer();
+            bundles.Add(bundle);
+
 
             // Use a versão em desenvolvimento do Modernizr para desenvolver e aprender. Em seguida, quando estiver
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.

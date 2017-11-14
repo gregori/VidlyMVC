@@ -15,7 +15,7 @@ else
     <p>
         @Html.ActionLink("Novo Cliente", "New", null, new { @class = "btn btn-primary" })
     </p>
-    <table class="table table-bordered table-hover">
+    <table id="customers" class="table table-bordered table-hover">
         <thead>
         <tr>
             <th>Cliente</th>
@@ -28,9 +28,23 @@ else
                 <tr>
                     <td>@Html.ActionLink(@customer.Name, "Edit", new {customer.Id})</td>
                     <td>@customer.MembershipType.Name</td>
+                    <td>@Html.ActionLink("Remover", "Delete", new {customer.Id}, new {@class = "btn-link js-delete", onclick = "return confirm('Tem certeza?');"})</td>
                 </tr>
             }
         </tbody>
     </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#customers").on("click",".js-delete",
+                function () {
+
+                    alert("vai se ferrar");
+                });
+        });
+    </script>
 }
 
