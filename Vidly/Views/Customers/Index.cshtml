@@ -6,15 +6,16 @@
 
 <h2>Clientes</h2>
 
+<p>
+    @Html.ActionLink("Novo Cliente", "New", null, new { @class = "btn btn-primary" })
+</p>
+
 @if(!Model.Any())
 {
     <p>Não temos nenhum cliente ainda.</p>
 }
 else
 {
-    <p>
-        @Html.ActionLink("Novo Cliente", "New", null, new { @class = "btn btn-primary" })
-    </p>
     <table id="customers" class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -57,15 +58,6 @@ else
                                 });   
                             }
                         });
-                    /*if (confirm("Tem certeza que quer remover este cliente?")) {
-                        $.ajax({
-                            url: "/customers/delete/" + button.attr("data-customer-id"),
-                            method: "GET",
-                            success: function() {
-                                button.parents("tr").remove();
-                            }
-                        });
-                    }*/
                 });
         });
     </script>
